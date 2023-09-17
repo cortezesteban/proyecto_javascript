@@ -1,6 +1,7 @@
 // Scritp que simula la compra de video juegos
-// En el menu se visualizan los juegos con el precio, el usuario elije el juego y a posterior la cantidad de copias
-// Al finalizar la aplicacion muestra el monto total y cantidad total de juegos.
+// En el menu principal se la opcion de ver la lista completa o hacer una busqueda por tipo de juego
+// El juego a comprar se puede asociar a la cuenta que realiza la operacion o como regalo a otra cuenta
+// Al finalizar la aplicacion muestra un detalle de la compra.
 
 const OPCION_1 = 1;
 const OPCION_2 = 2;
@@ -10,6 +11,7 @@ const CONTINUAR = 'SI';
 let total = 0;
 const juegosComprados = [];
 
+//Lista de juegos que se ofrecen en la tienda
 const listaJuegos = [new Juego(1, 'Dead Read Redemption 2', 430, 'Rockstar Games'),
                      new Juego(2, 'Diablo 4', 480, 'Blizzard Entertainment'),
                      new Juego(3, 'Battlefield 4', 390, 'Electronic Arts'),
@@ -20,6 +22,7 @@ const listaJuegos = [new Juego(1, 'Dead Read Redemption 2', 430, 'Rockstar Games
                      new Juego(8, 'Star Wars Jedi: Survivor', 500, 'Electronic Arts'),
                      new Juego(9, 'Lost Ark', 490, 'Amazon Game Studios')];
 
+//Lista de amigos asociados a la cuenta que realiza la compra
 const listaAmigos = [{idAmigo: 1, nombreAmigo: 'Wuetin'},
                      {idAmigo: 2, nombreAmigo: 'Boyken'},
                      {idAmigo: 3, nombreAmigo: 'Tuotiu'},
