@@ -1,5 +1,5 @@
 // Scritp que simula la compra de video juegos
-// En el menu principal se la opcion de ver la lista completa o hacer una busqueda por tipo de juego
+// En el menu principal se da las opciones de ver la lista completa o hacer una busqueda por tipo de juego
 // El juego a comprar se puede asociar a la cuenta que realiza la operacion o como regalo a otra cuenta
 // Al finalizar la aplicacion muestra un detalle de la compra.
 
@@ -29,6 +29,8 @@ const listaAmigos = [{idAmigo: 1, nombreAmigo: 'Wuetin'},
                      {idAmigo: 4, nombreAmigo: 'Usxovo'},
                      {idAmigo: 5, nombreAmigo: 'Ramuos'}];
 
+
+//Muestra la lista de amigos cuando el juego es un regalo
 const juegoDeRegalo = (opcionJuego) => {
     let opcionAmigo = 0;
     
@@ -54,6 +56,7 @@ const juegoDeRegalo = (opcionJuego) => {
     }while(respuesta.toUpperCase() == CONTINUAR);
 }
 
+//Valida si el juego se va a asociar a la cuenta del usuario o es un regalo
 const asociarJuego = (opcionJuego) => {
     let opcionCuentaRegalo = 0;
     let respuesta = 'NO';
@@ -61,9 +64,7 @@ const asociarJuego = (opcionJuego) => {
     const juego = listaJuegos.find((item) => {return item.idJuego === opcionJuego});
 
     do{
-        opcionCuentaRegalo = +prompt(`Asociar ${juego.nombre} a: \n 
-            1 - Mi Cuenta
-            2 - Se trata de un regalo`);
+        opcionCuentaRegalo = +prompt(`Asociar ${juego.nombre} a: \n 1 - Mi Cuenta \n 2 - Se trata de un regalo`);
 
         if(opcionCuentaRegalo == OPCION_1){
             juegosComprados.push(new Item(juego, 'Cuenta Propia'));
@@ -79,6 +80,7 @@ const asociarJuego = (opcionJuego) => {
     }while(respuesta.toUpperCase() == CONTINUAR);
 }
 
+//Muestra lista completa de Juegos
 const comprarDeListaCompleta = () => {
     let opcionJuego = 0;
     let respuesta = 'NO';
@@ -93,7 +95,7 @@ const comprarDeListaCompleta = () => {
         opcionJuego = +prompt(lista);
 
         if (listaJuegos.some((item) => {return item.idJuego === opcionJuego})){
-            total = asociarJuego(opcionJuego, total);
+            asociarJuego(opcionJuego);
             respuesta = prompt('Desea comprar otro juego si/no');
         }
         else{
@@ -103,9 +105,14 @@ const comprarDeListaCompleta = () => {
     }while(respuesta.toUpperCase() == CONTINUAR);
 }
 
+//Menu de Inicio
+// - Muetra las opciones de ordenamiento de los Juegos
+// - Muestra detalle de compra y total
 const inicioApp = () => {
     let respuesta = 'NO';
     let opcion = 0;
+    let listaCompra = '';
+
     do{
         opcion = +prompt(`Bienvenido al menu de compra, Elija una opcion (1, 2, 3, etc): \n
         1 - Mostrar Lista Completa de Juegos \n
@@ -124,8 +131,24 @@ const inicioApp = () => {
         else{
             respuesta = prompt('Opcion incorrecta, Desea volver al menu principal SI/NO');
         }
-
     }while(respuesta.toUpperCase() == CONTINUAR);
+    
+    total = juegosComprados.reduce((acum, item) => acum + item.Juego.precio, 0);
+
+    listaCompra = 'Juegos que se van a asociar a tu cuenta \n';
+    for (let i = 0 ; i < juegosComprados.length ; i++) {
+        if(juegosComprados[i].idAmigo === 'Cuenta Propia'){
+            listaCompra = listaCompra + `\tJuego: ${juegosComprados[i].Juego.nombre} - Precio ${juegosComprados[i].Juego.precio} pesos \n`;
+        }
+    };
+    
+    listaCompra = listaCompra + '\n\nJuegos que se compran como regalo \n';
+    for (let i = 0 ; i < juegosComprados.length ; i++) {
+        if(juegosComprados[i].idAmigo !== 'Cuenta Propia'){
+            listaCompra = listaCompra + `\tJuego: ${juegosComprados[i].Juego.nombre} - Precio ${juegosComprados[i].Juego.precio} pesos \n`;
+        }
+    };
+    alert(`${listaCompra} \n Total a pagar: ${total}`);
 }
 
 inicioApp();
