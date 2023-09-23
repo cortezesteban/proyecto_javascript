@@ -1,5 +1,119 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
 body{
     background-image: url('../img/storm_background.jpg');
     background-repeat: no-repeat;
     background-size: cover;
 }
+
+.imgInicio{
+    width: 200px;
+    height: 300px;
+    object-fit: cover;
+}
+
+.card {
+    border: none;
+    background: rgba(34, 34, 34, 0);
+}
+
+.modalColor{
+    background-color: rgb(34, 37, 45);
+}
+
+.botonModal{
+    margin: 0 auto;
+    background-color: rgb(24, 45, 77);
+    border: none;
+}
+
+.botonModal:hover{
+    background-color: rgb(64, 121, 206);
+}
+
+@media screen and (min-width: 0px) and (max-width: 768px) {
+  /************************************************
+               MEDIA QUERIES MAIN
+  ************************************************/
+  .h1Tittle {
+    font-size: 1.2rem;
+  }
+  .h2Tittle {
+    font-size: 1.2rem;
+  }
+  .h4Tittle {
+    font-size: 1rem;
+  }
+  .parrafo {
+    font-size: 1rem;
+  }
+}
+header {
+  background: linear-gradient(to right, #0a0b0c, #303137);
+}
+header .nav {
+  padding: 0px;
+}
+header .nav img {
+  width: 50px;
+  height: 50px;
+}
+header .nav img:hover {
+  background-color: rgb(0, 255, 255);
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgb(0, 255, 255);
+}
+header .nav .lista {
+  width: 100%;
+}
+header .nav .lista li {
+  font-size: 1rem;
+  text-transform: uppercase;
+  font-family: Shadows, sans-serif;
+  font-weight: 400;
+}
+header .nav .lista li .active {
+  background: linear-gradient(to right, rgba(11, 66, 121, 0.5921568627), rgba(90, 113, 147, 0.399));
+  border-radius: 5px;
+}
+header .navbar-dark .navbar-nav .nav-link:hover {
+  background: linear-gradient(to right, rgba(11, 66, 121, 0.5921568627), rgba(90, 113, 147, 0.399));
+  border-radius: 5px;
+  animation: mover 1.2s ease-in;
+}
+@keyframes mover {
+  15% {
+    transform: translateY(2px);
+  }
+  30% {
+    transform: translateY(-2px);
+  }
+  50% {
+    transform: translateY(2px);
+  }
+  65% {
+    transform: translateY(-2px);
+  }
+  80% {
+    transform: translateY(1px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.divFooter {
+    background: linear-gradient(to right, #0a0b0c, #303137);
+  }
+  
+  .divFooter img {
+    width: 30px;
+    height: 40px;
+    margin-right: 10px;
+    padding-bottom: 10px;
+    margin-left: 10px;
+  }

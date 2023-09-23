@@ -4,12 +4,244 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="./css/estilos.css">
     <title>Primera Preentrega</title>
 </head>
 <body>
-    <script src="./Juego.js"></script>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark nav">
+            <div class="container-fluid">
+                <a class="navbar-brand divImgNav" href="../index.html">
+                    <img src="./img/logo_juego.png" alt="" width="30" height="24" class="d-inline-block align-text-top">
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 lista justify-content-end">
+                        <li class="nav-item">
+                            <a class="nav-link active text-white" href="#">Inicio</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" aria-current="page" href="./pages/analisis.html">Carrito</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main class="container-fluid main">
+        <section class="row">
+            <div class="col-12">
+                <h2 class="h2Tittle text-center text-uppercase text-white mt-5 mb-5">Recomendados por los usuarios</h2>
+            </div>
+            <div class="card col-4 mb-5">
+                <div class="d-flex flex-column align-items-center justify-content-evenly p-2 imgAnimation" >
+                    <img class="imgInicio" src="./img/elden_ring_recomendado.jpg" alt="Juego Elden Ring"
+                            title="Juego de Rol y aventura en tercera persona">
+                    <div class="modal fade" id="modalEldenRing" tabindex="-1" role="dialog" aria-labelledby="modalEldenRing" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-scrollable d-flex justify-content-center align-items-center" role="document">
+                            <div class="modal-content w-75 modalColor text-white">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="modalEldenRingTitle">Elden Ring</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body d-flex flex-column justify-content-center align-items-center">
+                                    <img class="imgInicio " src="./img/elden_ring_recomendado.jpg" alt="Juego Elden Ring"
+                                    title="Juego de Rol y aventura en tercera persona">
+                                    <p class="text-justify">Elden Ring es un videojuego de rol de acción en tercera persona, 
+                                        con una jugabilidad centrada en el combate y la exploración. Presenta características similares de otros 
+                                        juegos desarrollados por FromSoftware, tales como la saga Dark Souls, Bloodborne y Sekiro: 
+                                        Shadows Die Twice.</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-primary">Save changes</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button type="button" class="btn text-white botonModal" data-toggle="modal" data-target="#modalEldenRing">
+                    Comprar Elden Ring
+                </button>
+            </div>
+            <div class="card col-4 mb-5">
+                <div class="d-flex flex-column align-items-center justify-content-evenly p-2">
+                    <img class="imgInicio" src="./img/valheim_recomendado.jpg" alt="Juego Valheim"
+                         title="Juego de aventura ambientada en la época de los vikingos ">
+                    <div class="modal fade" id="modalValheim" tabindex="-1" role="dialog" aria-labelledby="modalValheim"
+                        aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-scrollable d-flex justify-content-center align-items-center" role="document">
+                            <div class="modal-content w-75 modalColor text-white">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="mmodalValheimTitle">Elden Ring</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body d-flex flex-column justify-content-center align-items-center">
+                                    <img class="imgInicio " src="./img/valheim_recomendado.jpg" alt="Juego Elden Ring"
+                                        title="Juego de Rol y aventura en tercera persona">
+                                    <p class="text-justify">Valheim tiene lugar en un mundo donde los vikingos asesinados van a 
+                                        demostrar que son aptos para los pasillos de Valhalla . Como tal, el jugador comienza sin nada y pronto 
+                                        descubre que para llegar al más allá nórdico, debe derrotar a los males que acechan a Valheim. 
+                                        Guiado únicamente por sus instintos y las pistas ocasionales de un cuervo.</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-primary">Save changes</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button type="button" class="btn text-white botonModal" data-toggle="modal" data-target="#modalValheim">
+                    Comprar Valheim
+                </button>
+            </div>
+            <div class="card col-4 mb-5">
+                <div class="d-flex flex-column align-items-center justify-content-evenly p-2">
+                    <img class="imgInicio" src="./img/rdr2_recomendado.jpg" alt="Juego Red Dead Redemption"
+                         title="Juego de aventura ambientada en el viejo Oeste, Vaqueros e Indios">
+                    <div class="modal fade" id="modalRDR2" tabindex="-1" role="dialog" aria-labelledby="modalRDR2" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-scrollable d-flex justify-content-center align-items-center" role="document">
+                            <div class="modal-content w-75 modalColor text-white">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="modalRDR2Title">Elden Ring</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body d-flex flex-column justify-content-center align-items-center">
+                                    <img class="imgInicio " src="./img/rdr2_recomendado.jpg" alt="Juego Elden Ring"
+                                        title="Juego de Rol y aventura en tercera persona">
+                                    <p class="text-justify">Red Dead Redemption 2 es un juego de acción y aventuras de temática 
+                                        occidental . Jugado desde una perspectiva en primera o tercera persona , el juego está ambientado en un 
+                                        entorno de mundo abierto que presenta una versión ficticia de los Estados Unidos en 1899.</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-primary">Save changes</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button type="button" class="btn text-white botonModal" data-toggle="modal" data-target="#modalRDR2">
+                    Comprar RDR 2
+                </button>
+            </div>
+            <div class="card col-4 mb-5">
+                <div class="d-flex flex-column align-items-center justify-content-evenly p-2">
+                    <img class="imgInicio" src="./img/factorio_recomendado.jpg" alt="Juego Factorio"
+                         title="Juego de gestión de recursos y construcción en 2d">
+                    <div class="modal fade" id="modalFactorio" tabindex="-1" role="dialog" aria-labelledby="modalFactorio" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-scrollable d-flex justify-content-center align-items-center" role="document">
+                            <div class="modal-content w-75 modalColor text-white">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="modalFactorioTitle">Elden Ring</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body d-flex flex-column justify-content-center align-items-center">
+                                    <img class="imgInicio " src="./img/factorio_recomendado.jpg" alt="Juego Elden Ring"
+                                        title="Juego de Rol y aventura en tercera persona">
+                                    <p class="text-justify">Factorio es un videojuego de estrategia en tiempo real desarrollado por 
+                                        Wube Software. Ha estado disponible como videojuego de acceso anticipado desde 2013 y ha sido lanzado 
+                                        oficialmente el 14 de agosto de 2020.</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-primary">Save changes</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button type="button" class="btn text-white botonModal" data-toggle="modal" data-target="#modalFactorio">
+                    Comprar Factorio
+                </button>
+            </div>
+            <div class="card col-4 mb-5">
+                <div class="d-flex flex-column align-items-center justify-content-evenly p-2">
+                    <img class="imgInicio" src="./img/new_world_recomendado.jpg" alt="Juego New World"
+                         title="Juego de aventura online ambientada en la época colonial ">
+                    <div class="modal fade" id="modalNewWorld" tabindex="-1" role="dialog" aria-labelledby="modalNewWorld" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-scrollable d-flex justify-content-center align-items-center" role="document">
+                            <div class="modal-content w-75 modalColor text-white">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="modalNewWorldTitle">Elden Ring</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body d-flex flex-column justify-content-center align-items-center">
+                                    <img class="imgInicio " src="./img/new_world_recomendado.jpg" alt="Juego Elden Ring"
+                                        title="Juego de Rol y aventura en tercera persona">
+                                    <p class="text-justify">New World es un videojuego de rol multijugador masivo en línea 
+                                        desarrollado por Amazon Game Studios. Ambientado a mediados del siglo XVII, los jugadores tendrán la 
+                                        tarea de colonizar tierras modeladas a imagen y semejanza de la América Británica oriental.</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-primary">Save changes</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button type="button" class="btn text-white botonModal" data-toggle="modal" data-target="#modalNewWorld">
+                    Comprar New World
+                </button>
+            </div>
+            <div class="card col-4 mb-5">
+                <div class="d-flex flex-column align-items-center justify-content-evenly p-2">
+                    <img class="imgInicio" src="./img/project_zomboid_recomendados.jpg" alt="Juego Project Zomboid"
+                         title="Juego de supervivencia de zombies en 2d ">
+                    <div class="modal fade" id="modalZomboid" tabindex="-1" role="dialog" aria-labelledby="modalZomboid" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-scrollable d-flex justify-content-center align-items-center" role="document">
+                            <div class="modal-content w-75 modalColor text-white">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="modalZomboidTitle">Elden Ring</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body d-flex flex-column justify-content-center align-items-center">
+                                    <img class="imgInicio " src="./img/project_zomboid_recomendados.jpg" alt="Juego Elden Ring"
+                                        title="Juego de Rol y aventura en tercera persona">
+                                    <p class="text-justify">En Project Zomboid , el jugador tiene como objetivo sobrevivir el 
+                                        mayor tiempo posible en un área apocalíptica y plagada de zombis alrededor de la ciudad de Louisville, 
+                                        Kentucky , conocida como 'Knox Country', que ha sido puesta en cuarentena por el gobierno.</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-primary">Save changes</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button type="button" class="btn text-white botonModal" data-toggle="modal" data-target="#modalZomboid">
+                    Comprar P Zomboid
+                </button>
+            </div>
+        </section>
+    </main>
+    <footer class="container-fluid">
+        <div class="row justify-content-center align-items-center divFooter">
+            <div class="col-12 pt-3 d-flex">
+                <p class="text-white text-center parrafo fw-bold">2023 - Curso de JavaScript - Pagina sin fines de Lucro</p>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- <script src="./Juego.js"></script>
     <script src="./Item.js"></script>
-    <script src="./app.js"></script>
+    <script src="./app.js"></script> -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </body>
 </html>
