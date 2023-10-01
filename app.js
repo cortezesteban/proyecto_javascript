@@ -11,6 +11,8 @@ const listaJuegos = [new Juego('Elden Ring', 430, 'Rockstar Games', 'Accion', '.
                      new Juego('Cities Skylines', 390, ' Colossal Order', 'Estrategia', './assets/img/cities_skylines.png', 'El juego es una simulación de construcción de ciudades abierta para un solo jugador. Los jugadores participan en la planificación urbana controlando la zonificación, la ubicación de las carreteras, los impuestos, los servicios públicos y el transporte público de un área'),
                      new Juego('Counter Strike', 390, 'Valve', 'Disparos', './assets/img/counterstrike.jpg', 'Counter-Strike es la nueva versión del emblemático shooter competitivo de Valve. Se trata de un juego que llega para sustituir a CS:GO contando con el motor Source 2 e importantes cambios en físicas, humos, mecánicas de disparo, estabilidad de servidores, mapas modificados o reconstruidos desde cero y un nuevo sistema competitivo')];
 
+let carritoJuegos = [];
+
 const mostrarBusqueda = (lista) => {
     const contenedor = document.getElementById('contenedorTarjetas');
     contenedor.innerHTML = ``;
@@ -26,20 +28,23 @@ const mostrarBusqueda = (lista) => {
                         aria-labelledby="modal${nombre}" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-scrollable d-flex justify-content-center align-items-center"
                             role="document">
-                            <div class="modal-content w-75 modalColor text-white">
+                            <div class="modal-content modalColor text-white">
                                 <div class="modal-header">
                                     <h5 class="modal-title" id="modal${nombre}Title">${item.nombre}</h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
-                                <div
-                                    class="modal-body d-flex flex-column justify-content-center align-items-center">
+                                <div class="modal-body d-flex flex-column justify-content-center align-items-center">
                                     <img class="imgInicio " src="${item.imagen}" alt="Juego ${item.nombre}"/>
                                     <p class="text-justify">${item.descripcion}</p>
                                 </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-primary">Save changes</button>
+                                <div class="d-flex flex-row">
+                                    <p class="text-left parrafoDescripcion"><span class="spanParrafo">Precio: </span>${item.precio} pesos</p>
+                                    <p class="text-left parrafoDescripcion"><span class="spanParrafo">Genero: </span>${item.genero}</p>
+                                </div>
+                                <div class="modal-footer d-flex justify-content-between" id="contenedor${nombre}">
+                                    <button type="button" class="btn btn-primary" id="${nombre}">Agregar al Carrito</button>
                                 </div>
                             </div>
                         </div>
@@ -50,6 +55,29 @@ const mostrarBusqueda = (lista) => {
                     Comprar ${item.nombre}
                 </button>
             </div>`;
+    });
+
+    lista.forEach((item) => {
+        const nombreJuego = item.nombre.replace(/\s+/g, '');
+    
+        if (carritoJuegos.some((e) => e.nombre.replace(/\s+/g, '') === nombreJuego)) {
+            document.querySelector(`#${nombreJuego}`).disabled = true;
+
+            let alertaCompra = document.querySelector(`#contenedor${nombreJuego}`);
+            alertaCompra.innerHTML = alertaCompra.innerHTML + `<p class="alertaCompra">Ya esta en el carrito</p>`;
+        }
+        else{
+            document.querySelector(`#${nombreJuego}`).addEventListener('click',(event) => {
+                const juego = lista.find((e) => e.nombre.replace(/\s+/g, '') === event.target.id)
+
+                carritoJuegos.push(new Carrito(juego.nombre, juego.genero, juego.precio));
+
+                let alertaCompra = document.querySelector(`#contenedor${nombreJuego}`);
+                alertaCompra.innerHTML = alertaCompra.innerHTML + `<p class="alertaCompra">Se agrego al Carrito</p>`;
+
+                document.querySelector(`#${nombreJuego}`).disabled = true; 
+            })
+        }
     });
 };
 
@@ -72,4 +100,3 @@ const inicioAPP = () => {
 };
 
 inicioAPP();
-
