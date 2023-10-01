@@ -5,9 +5,10 @@
   }
 
 body{
-    background-image: url('../img/storm_background.jpg');
+    background-image: url('../assets/img/storm_background.jpg');
     background-repeat: no-repeat;
     background-size: cover;
+    object-fit: cover;
 }
 
 .imgInicio{

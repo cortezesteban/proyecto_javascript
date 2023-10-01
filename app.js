@@ -1,242 +1,76 @@
-// Scritp que simula la compra de video juegos
-// En el menu principal se da las opciones de ver la lista completa o hacer una busqueda por genero de juego
-// El juego a comprar se puede asociar a la cuenta que realiza la operacion o como regalo a otra cuenta
-// Al finalizar la aplicacion muestra un detalle de la compra.
+const listaJuegos = [new Juego('Elden Ring', 430, 'Rockstar Games', 'Accion', './assets/img/elden_ring_recomendado.jpg', 'Red Dead Redemption 2 es un juego de acción y aventuras de temática occidental . Jugado desde una perspectiva en primera o tercera persona, el juego está ambientado en un entorno de mundo abierto que presenta una versión ficticia de los Estados Unidos en 1899.'),
+                     new Juego('Valheim', 480, 'Iron Gate Studio', 'Supervivencia', './assets/img/valheim_recomendado.jpg', 'Valheim tiene lugar en un mundo donde los vikingos asesinados van a demostrar que son aptos para los pasillos de Valhalla . Como tal, el jugador comienza sin nada y pronto descubre que para llegar al más allá nórdico, debe derrotar a los males que acechan a Valheim. Guiado únicamente por sus instintos y las pistas ocasionales de un cuervo.'),
+                     new Juego('RDR 2', 460, 'Rockstar Games', 'Aventura', './assets/img/rdr2_recomendado.jpg', 'Red Dead Redemption 2 es un juego de acción y aventuras de temática occidental . Jugado desde una perspectiva en primera o tercera persona, el juego está ambientado en un entorno de mundo abierto que presenta una versión ficticia de los Estados Unidos en 1899.'),
+                     new Juego('Factorio', 510, 'Wube Software', 'Estrategia', './assets/img/factorio_recomendado.jpg', 'Factorio es un videojuego de estrategia en tiempo real desarrollado por Wube Software. Ha estado disponible como videojuego de acceso anticipado desde 2013 y ha sido lanzado oficialmente el 14 de agosto de 2020.'),
+                     new Juego('New World', 530, 'Amazon Game Studios', 'Rol', './assets/img/new_world_recomendado.jpg', 'New World es un videojuego de rol multijugador masivo en línea desarrollado por Amazon Game Studios. Ambientado a mediados del siglo XVII, los jugadores tendrán la tarea de colonizar tierras modeladas a imagen y semejanza de la América Británica oriental.'),
+                     new Juego('Project Zomboid', 390, 'The Indie Stone', 'Supervivencia', './assets/img/project_zomboid_recomendados.jpg', 'En Project Zomboid , el jugador tiene como objetivo sobrevivir el mayor tiempo posible en un área apocalíptica y plagada de zombis alrededor de la ciudad de Louisville, Kentucky , conocida como Knox Country, que ha sido puesta en cuarentena por el gobierno.'),
+                     new Juego('No Man Sky', 390, 'Hello Games', 'Aventura', './assets/img/no_man_sky_recomendado.jpg', 'No Mans Sky es un juego de ciencia ficción y aventura desarrollado por Hello Games. Contará con niveles generados proceduralmente, y nos dejará explorar planetas, océanos, batallas en el espacio y luchar contra depredadores. Cada mundo tendrá su propio ecosistema, con mundos de todo tipo, desde entornos desérticos hasta lugares boscosos.'),
+                     new Juego('Star Wars Jedi', 390, 'Respawn Entertainment', 'Accion', './assets/img/star_wars_jedi_survivor_recomendado.webp', 'La historia de Cal Kestis continúa en Star Wars Jedi: Survivor, un juego de acción y aventuras en tercera persona desarrollado por Respawn Entertainment en colaboración con Lucasfilm Games. Este título para un jugador centrado en la historia retoma la aventura 5 años después de los acontecimientos de Star Wars Jedi: Fallen Order y acompañaremos a Cal en su lucha cada vez más desesperada mientras la galaxia se hunde en la oscuridad'),
+                     new Juego('Assassins Creed Odyssey', 390, 'Ubisoft Quebec', 'Aventura', './assets/img/assassins_creed _odyssey.jpg', 'Assassin Creed Odyssey es la nueva entrega de la saga de Assassin Creed tras Assassin Creed Origins. Desarrollada por Ubisoft Quebec, se trata de una vuelta de tuerca a la habitual propuesta de acción y aventura en mundo abierto de la serie, apostando en esta ocasión por una ambientación en la Antigua Grecia y un estilo de videojuego más enfocado al rol'),
+                     new Juego('Battlefield 4', 390, 'EA Games', 'Disparos', './assets/img/battlefield_4.jpg', 'Esta ocasión llevará al jugador a diferentes enclaves en Oriente. El nuevo Frostbite 3 promete un nivel gráfico y destructivo a gran escala pensando también en ver la guerra con gran realismo. Con el denominado "Levolution" la partida irá cambiando con la forma de avanzar de cada jugador.'),
+                     new Juego('Cities Skylines', 390, ' Colossal Order', 'Estrategia', './assets/img/cities_skylines.png', 'El juego es una simulación de construcción de ciudades abierta para un solo jugador. Los jugadores participan en la planificación urbana controlando la zonificación, la ubicación de las carreteras, los impuestos, los servicios públicos y el transporte público de un área'),
+                     new Juego('Counter Strike', 390, 'Valve', 'Disparos', './assets/img/counterstrike.jpg', 'Counter-Strike es la nueva versión del emblemático shooter competitivo de Valve. Se trata de un juego que llega para sustituir a CS:GO contando con el motor Source 2 e importantes cambios en físicas, humos, mecánicas de disparo, estabilidad de servidores, mapas modificados o reconstruidos desde cero y un nuevo sistema competitivo')];
 
-const OPCION_1 = 1;
-const OPCION_2 = 2;
-const OPCION_3 = 3;
-const OPCION_4 = 4;
-const OPCION_5 = 5;
-const OPCION_6 = 6;
+const mostrarBusqueda = (lista) => {
+    const contenedor = document.getElementById('contenedorTarjetas');
+    contenedor.innerHTML = ``;
 
-const CONTINUAR = 'SI';
-let total = 0;
-const juegosComprados = [];
+    lista.forEach((item) => {
+        let nombre = item.nombre.replace(/\s+/g, '');
 
-//Lista de juegos que se ofrecen en la tienda
-const listaJuegos = [new Juego(1, 'Dead Read Redemption 2', 430, 'Rockstar Games', 'Accion'),
-                     new Juego(2, 'Diablo 4', 480, 'Blizzard Entertainment', 'Rol'),
-                     new Juego(3, 'Battlefield 4', 390, 'Electronic Arts', 'Disparos'),
-                     new Juego(4, 'New World', 510, 'Amazon Game Studios', 'Rol'),
-                     new Juego(5, 'No Mans Sky', 300, 'Hello Games', 'Aventura'),
-                     new Juego(6, 'Overwatch 2', 410, 'Blizzard Entertainment', 'Disparos'),
-                     new Juego(7, 'World of Warcraft', 430, 'Blizzard Entertainment', 'Rol'),
-                     new Juego(8, 'Star Wars Jedi: Survivor', 500, 'Electronic Arts', 'Accion'),
-                     new Juego(9, 'Project Zomboid', 380, 'The Indie Stone', 'Supervivencia'),
-                     new Juego(10, 'Age of Empire', 450, 'Relic Entertainment', 'Estrategia'),
-                     new Juego(11, 'Assassins Creed Odyssey', 560, 'Ubisoft', 'Accion'),
-                     new Juego(12, 'Cities: Skylines', 400, 'Colossal Order', 'Estrategia'),
-                     new Juego(13, 'Counter-Strike', 320, 'Valve', 'Disparos')];
+        contenedor.innerHTML = contenedor.innerHTML + `
+            <div class="card col-4 mt-2 pb-2">
+                <div class="d-flex flex-column align-items-center justify-content-evenly p-2">
+                    <img class="imgInicio" src="${item.imagen}">
+                    <div class="modal fade" id="modal${nombre}" tabindex="-1" role="dialog"
+                        aria-labelledby="modal${nombre}" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-scrollable d-flex justify-content-center align-items-center"
+                            role="document">
+                            <div class="modal-content w-75 modalColor text-white">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="modal${nombre}Title">${item.nombre}</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div
+                                    class="modal-body d-flex flex-column justify-content-center align-items-center">
+                                    <img class="imgInicio " src="${item.imagen}"
+                                        alt="Juego ${item.nombre}"
+                                    <p class="text-justify">${item.descripcion}</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-primary">Save changes</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button type="button" class="btn text-white botonModal" data-toggle="modal"
+                    data-target="#modal${nombre}">
+                    Comprar ${item.nombre}
+                </button>
+            </div>`;
+    });
+};
 
-//Lista de amigos asociados a la cuenta que realiza la compra
-const listaAmigos = [{idAmigo: 1, nombreAmigo: 'Wuetin'},
-                     {idAmigo: 2, nombreAmigo: 'Boyken'},
-                     {idAmigo: 3, nombreAmigo: 'Tuotiu'},
-                     {idAmigo: 4, nombreAmigo: 'Usxovo'},
-                     {idAmigo: 5, nombreAmigo: 'Ramuos'}];
+const ordenarLista = (filtro) => {
+    if (filtro === 'Todo') {
+        mostrarBusqueda(listaJuegos);
+    }
+    else {
+        const listaFiltrada = listaJuegos.filter((item) => item.genero === `${filtro}`);
+        mostrarBusqueda(listaFiltrada);
+    }
+};
 
+document.getElementById('itemLista').addEventListener('click', (event) => {
+    ordenarLista(event.target.id);
+});
 
-//Muestra la lista de amigos cuando el juego es un regalo
-const juegoDeRegalo = (opcionJuego) => {
-    let opcionAmigo = 0;
-    let lista = '';
-    let amigo = {};
-    
-    console.log(opcionJuego);
+const inicioAPP = () => {
+    mostrarBusqueda(listaJuegos);
+};
 
-    do{
-        lista = `Elija un amigo de su lista (Opcion 1, 2, 3, etc): \n\n`;
+inicioAPP();
 
-        for (let i = 0 ; i < listaAmigos.length ; i++) {
-            lista = lista + `${listaAmigos[i].idAmigo} - ${listaAmigos[i].nombreAmigo}\n`;
-        };
-
-        opcionAmigo = +prompt(lista);
-
-        if(listaAmigos.some((item) => {return item.idAmigo === opcionAmigo})){
-            amigo = listaAmigos.find((item) => {return item.idAmigo === opcionAmigo});
-            if(juegosComprados.some((item) => {return (item.Juego.nombre === opcionJuego.nombre && item.idAmigo === amigo.nombreAmigo)})){
-                alert(`Ya le regalaste este juego a ${amigo.nombreAmigo}`);
-                respuesta = 'NO';
-            }
-            else{
-                juegosComprados.push(new Item(opcionJuego, amigo.nombreAmigo));
-                respuesta = 'NO';
-            }
-        }
-        else{
-            alert('Opcion incorrecta, seleccione una opcion de la lista');
-            respuesta = 'SI';
-        }
-    }while(respuesta.toUpperCase() == CONTINUAR);
-}
-
-//Valida si el juego se va a asociar a la cuenta del usuario o es un regalo
-const asociarJuego = (opcionJuego) => {
-    let opcionCuentaRegalo = 0;
-    let respuesta = 'NO';
-
-    const juego = listaJuegos.find((item) => {return item.idJuego === opcionJuego});
-
-    do{
-        opcionCuentaRegalo = +prompt(`Asociar ${juego.nombre} a: \n 1 - Mi Cuenta \n 2 - Se trata de un regalo`);
-
-        if(opcionCuentaRegalo == OPCION_1){
-            if(juegosComprados.some((item) => {return (item.Juego.idJuego === opcionJuego && item.idAmigo === 'Cuenta Propia')})){
-                alert('Este juego ya esta en tu biblioteca');
-                respuesta = 'NO';
-            }
-            else{
-                juegosComprados.push(new Item(juego, 'Cuenta Propia'));
-                respuesta = 'NO';
-            }
-        }
-        else if(opcionCuentaRegalo == OPCION_2){
-            juegoDeRegalo(juego);
-        }
-        else{
-            alert('Opcion incorrecta, seleccione una opcion de la lista');
-            respuesta = 'SI';
-        }
-    }while(respuesta.toUpperCase() == CONTINUAR);
-}
-
-//Muestra lista completa de Juegos
-const comprarDeListaCompleta = () => {
-    let opcionJuego = 0;
-    let respuesta = 'NO';
-    let lista = '';
-
-    do{
-        lista = `Elija el Juego que desea comprar (Opcion 1, 2, 3, etc): \n\n`;
-        for (let i = 0 ; i < listaJuegos.length ; i++) {
-            lista = lista + `${listaJuegos[i].idJuego} - ${listaJuegos[i].nombre} - Precio ${listaJuegos[i].precio} pesos \n`;
-        };
-
-        opcionJuego = +prompt(lista);
-
-        if (listaJuegos.some((item) => {return item.idJuego === opcionJuego})){
-            asociarJuego(opcionJuego);
-            respuesta = prompt('Desea comprar otro juego si/no');
-        }
-        else{
-            alert('Opcion incorrecta, seleccione una opcion de la lista');
-            respuesta = 'SI';
-        }
-    }while(respuesta.toUpperCase() == CONTINUAR);
-}
-
-//devuelve los juegos por filtro
-const listaJuegosPorFiltro = (filtro) => {
-    return listaJuegos.filter((item) => item.genero === `${filtro}`);
-}
-
-//Muestra lista de juegos por genero
-const comprarDeListaPorGenero = () => {
-    let opcionJuego = 0;
-    let respuesta = 'NO';
-    let listaGenero = '';
-    let lista = '';
-
-    do{
-        opcionJuego = +prompt(`Elija algun Genero (Opcion 1, 2, 3, etc):
- 1 - Rol \n 2 - Accion \n 3 - Aventura \n 4 - Disparos \n 5 - Estrategia \n 6 - Supervivencia`);
-
-        switch (opcionJuego) {
-            case OPCION_1:
-                listaGenero = listaJuegosPorFiltro('Rol');
-                break;
-            case OPCION_2:
-                listaGenero = listaJuegosPorFiltro('Accion');
-                break;
-            case OPCION_3:
-                listaGenero = listaJuegosPorFiltro('Aventura');
-                break;
-            case OPCION_4:
-                listaGenero = listaJuegosPorFiltro('Disparos');
-                break;
-            case OPCION_5:
-                listaGenero = listaJuegosPorFiltro('Estrategia');
-                break;
-            case OPCION_6:
-                listaGenero = listaJuegosPorFiltro('Supervivencia');
-                break;
-            default:
-                alert('Opcion incorrecta, seleccione una opcion de la lista');
-                respuesta = 'SI';
-                break;
-        }
-    }while(respuesta.toUpperCase() == CONTINUAR)
-
-    do{
-        lista = `Elija el Juego que desea comprar (Opcion 1, 2, 3, etc): \n\n`;
-        for (let i = 0 ; i < listaGenero.length ; i++) {
-            lista = lista + `${listaGenero[i].idJuego} - ${listaGenero[i].nombre} - ${listaGenero[i].genero} - Precio ${listaGenero[i].precio} pesos \n`;
-        };
-
-        opcionJuego = +prompt(lista);
-
-        if (listaGenero.some((item) => {return item.idJuego === opcionJuego})){
-            asociarJuego(opcionJuego);
-            respuesta = prompt('Desea comprar otro juego si/no');
-        }
-        else{
-            alert('Opcion incorrecta, seleccione una opcion de la lista');
-            respuesta = 'SI';
-        }
-    }while(respuesta.toUpperCase() == CONTINUAR);
-}
-
-//Menu de Inicio
-// - Muetra las opciones de ordenamiento de los Juegos
-// - Muestra detalle de compra y total
-const inicioApp = () => {
-    let respuesta = 'NO';
-    let opcion = 0;
-    let listaCompra = '';
-
-    do{
-        opcion = +prompt(`Bienvenido al menu de compra, Elija una opcion (1, 2, 3, etc): \n
-        1 - Mostrar Lista Completa de Juegos \n
-        2 - Buscar por Genero de Video Juego \n
-        3 - Salir`);
-        
-        switch (opcion) {
-            case OPCION_1:
-                comprarDeListaCompleta();
-                respuesta = 'SI';
-                break;
-            case OPCION_2:
-                comprarDeListaPorGenero();
-                respuesta = 'SI'; 
-                break;
-            case OPCION_3:
-                respuesta = 'NO';
-                break;
-        }
-    
-    }while(respuesta.toUpperCase() == CONTINUAR);
-    
-    total = juegosComprados.reduce((acum, item) => acum + item.Juego.precio, 0);
-    total = total + (total * 0.3);
-
-    //lista los juegos - cuenta propia
-    listaCompra = 'Juegos que se van a asociar a tu cuenta: \n';
-    for (let i = 0 ; i < juegosComprados.length ; i++) {
-        if(juegosComprados[i].idAmigo === 'Cuenta Propia'){
-            listaCompra = listaCompra + `\t\t ${juegosComprados[i].Juego.nombre} - ${juegosComprados[i].Juego.genero} - Precio ${juegosComprados[i].Juego.precio} pesos \n`;
-        }
-    };
-    
-    //lista los juegos de regalo
-    listaCompra = listaCompra + '\n\nJuegos que se compran como regalo: \n';
-    for (let i = 0 ; i < juegosComprados.length ; i++) {
-        if(juegosComprados[i].idAmigo !== 'Cuenta Propia'){
-            listaCompra = listaCompra + `\t\t ${juegosComprados[i].Juego.nombre} - ${juegosComprados[i].Juego.genero} - Amigo: ${juegosComprados[i].idAmigo} - Precio ${juegosComprados[i].Juego.precio} pesos \n`;
-        }
-    };
-    alert(`${listaCompra} \nTotal a pagar con un impuesto del 30%: ${total} pesos`);
-}
-
-inicioApp();
