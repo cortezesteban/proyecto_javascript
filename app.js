@@ -13,6 +13,15 @@ const listaJuegos = [new Juego('Elden Ring', 430, 'Rockstar Games', 'Accion', '.
 
 let carritoJuegos = [];
 
+const validarCarrito = (juego, mensaje) => {
+    let alertaCompra = document.querySelector(`#contenedor${juego}`);
+    alertaCompra.innerHTML = alertaCompra.innerHTML + `<p class="alertaCompra">${mensaje}</p>`;
+
+    document.querySelector(`#${juego}`).disabled = true;
+    document.querySelector(`#${juego}`).classList.remove('botonComprar');
+    document.querySelector(`#${juego}`).classList.add('botonApagado');
+}
+
 const mostrarBusqueda = (lista) => {
     const contenedor = document.getElementById('contenedorTarjetas');
     contenedor.innerHTML = ``;
@@ -44,7 +53,7 @@ const mostrarBusqueda = (lista) => {
                                     <p class="text-left parrafoDescripcion"><span class="spanParrafo">Genero: </span>${item.genero}</p>
                                 </div>
                                 <div class="modal-footer d-flex justify-content-between" id="contenedor${nombre}">
-                                    <button type="button" class="btn btn-primary" id="${nombre}">Agregar al Carrito</button>
+                                    <button type="button" class="btn text-white botonComprar" id="${nombre}">Agregar al Carrito</button>
                                 </div>
                             </div>
                         </div>
@@ -61,10 +70,7 @@ const mostrarBusqueda = (lista) => {
         const nombreJuego = item.nombre.replace(/\s+/g, '');
     
         if (carritoJuegos.some((e) => e.nombre.replace(/\s+/g, '') === nombreJuego)) {
-            document.querySelector(`#${nombreJuego}`).disabled = true;
-
-            let alertaCompra = document.querySelector(`#contenedor${nombreJuego}`);
-            alertaCompra.innerHTML = alertaCompra.innerHTML + `<p class="alertaCompra">Ya esta en el carrito</p>`;
+            validarCarrito(nombreJuego, 'Ya esta en el carrito');
         }
         else{
             document.querySelector(`#${nombreJuego}`).addEventListener('click',(event) => {
@@ -72,10 +78,7 @@ const mostrarBusqueda = (lista) => {
 
                 carritoJuegos.push(new Carrito(juego.nombre, juego.genero, juego.precio));
 
-                let alertaCompra = document.querySelector(`#contenedor${nombreJuego}`);
-                alertaCompra.innerHTML = alertaCompra.innerHTML + `<p class="alertaCompra">Se agrego al Carrito</p>`;
-
-                document.querySelector(`#${nombreJuego}`).disabled = true; 
+                validarCarrito(nombreJuego, 'Se agrego al Carrito');
             })
         }
     });

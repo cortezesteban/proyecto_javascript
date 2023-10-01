@@ -33,8 +33,21 @@ body{
     border: none;
 }
 
+.botonComprar{
+  background-color: rgb(63, 66, 66);
+  order: none;
+}
+
+.botonApagado{
+  background-color: rgb(64, 121, 206);
+}
+
 .botonModal:hover{
     background-color: rgb(64, 121, 206);
+}
+
+.botonComprar:hover{
+  background-color: rgb(64, 121, 206);
 }
 
 @media screen and (min-width: 0px) and (max-width: 768px) {
