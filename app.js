@@ -35,8 +35,7 @@ const mostrarBusqueda = (lista) => {
                                 </div>
                                 <div
                                     class="modal-body d-flex flex-column justify-content-center align-items-center">
-                                    <img class="imgInicio " src="${item.imagen}"
-                                        alt="Juego ${item.nombre}"
+                                    <img class="imgInicio " src="${item.imagen}" alt="Juego ${item.nombre}"/>
                                     <p class="text-justify">${item.descripcion}</p>
                                 </div>
                                 <div class="modal-footer">
