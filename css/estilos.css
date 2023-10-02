@@ -4,6 +4,11 @@
     box-sizing: border-box;
   }
 
+html {
+  min-height: 100%;
+  position: relative;
+}
+
 body{
     background-image: url('../assets/img/storm_background.jpg');
     background-repeat: no-repeat;
@@ -42,12 +47,13 @@ body{
   background-color: rgb(64, 121, 206);
 }
 
-.botonModal:hover{
-    background-color: rgb(64, 121, 206);
+.botonCarrito{
+  background-color: rgb(16, 78, 154);
+  order: none;
 }
 
-.botonComprar:hover{
-  background-color: rgb(64, 121, 206);
+.botonCarrito:hover, .botonComprar:hover, .botonModal:hover {
+    background-color: rgb(64, 121, 206);
 }
 
 @media screen and (min-width: 0px) and (max-width: 768px) {
@@ -128,7 +134,10 @@ header .navbar-dark .navbar-nav .nav-link:hover {
 
 .divFooter {
     background: linear-gradient(to right, black, #212226);
-  }
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
   
 .divFooter img {
   width: 30px;
