@@ -30,7 +30,7 @@ const mostrarBusqueda = (lista) => {
         let nombre = item.nombre.replace(/\s+/g, '');
 
         contenedor.innerHTML = contenedor.innerHTML + `
-            <div class="card col-4 mt-2 pb-2">
+            <div class="card col-4 mt-2 pb-2 mb-3">
                 <div class="d-flex flex-column align-items-center justify-content-evenly p-2">
                     <img class="imgInicio" src="${item.imagen}">
                     <div class="modal fade" id="modal${nombre}" tabindex="-1" role="dialog"
