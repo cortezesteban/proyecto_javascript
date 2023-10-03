@@ -43,13 +43,13 @@ body{
   order: none;
 }
 
-.botonApagado{
-  background-color: rgb(64, 121, 206);
-}
-
 .botonCarrito{
   background-color: rgb(16, 78, 154);
   order: none;
+}
+
+.botonApagado{
+  background-color: rgb(64, 121, 206);
 }
 
 .botonCarrito:hover, .botonComprar:hover, .botonModal:hover {
@@ -101,6 +101,7 @@ header .nav .lista li {
   text-transform: uppercase;
   font-family: Shadows, sans-serif;
   font-weight: 400;
+  margin-right: 10px;
 }
 header .nav .lista li .active {
   background: linear-gradient(to right, rgba(11, 66, 121, 0.5921568627), rgba(90, 113, 147, 0.399));
@@ -178,7 +179,7 @@ header .navbar-dark .navbar-nav .nav-link:hover {
   color: white;
   border-radius: 5px;
   padding: 3px;
-  margin-top: 7px;
+  margin-bottom: 0px;
 }
 
 .parrafoDescripcion{
@@ -187,4 +188,9 @@ header .navbar-dark .navbar-nav .nav-link:hover {
 
 .spanParrafo{
   color: #36c6b1;
+}
+
+header .nav .imagenCarrito{
+  height: 25px;
+  width: 25px;
 }

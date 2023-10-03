@@ -12,13 +12,15 @@ const listaJuegos = [new Juego('Elden Ring', 430, 'Rockstar Games', 'Accion', '.
                      new Juego('Counter Strike', 390, 'Valve', 'Disparos', './assets/img/counterstrike.jpg', 'Counter-Strike es la nueva versión del emblemático shooter competitivo de Valve. Se trata de un juego que llega para sustituir a CS:GO contando con el motor Source 2 e importantes cambios en físicas, humos, mecánicas de disparo, estabilidad de servidores, mapas modificados o reconstruidos desde cero y un nuevo sistema competitivo')];
 
 let carritoJuegos = [];
+let tablaCarrito;
 
 const validarCarrito = (juego, mensaje) => {
-    let alertaCompra = document.querySelector(`#contenedor${juego}`);
-    alertaCompra.innerHTML = alertaCompra.innerHTML + `<p class="alertaCompra">${mensaje}</p>`;
-
+    if(mensaje !== ""){
+        let alertaCompra = document.querySelector(`#contenedor${juego}`);
+        alertaCompra.innerHTML = alertaCompra.innerHTML + `<p class="alertaCompra">${mensaje}</p>`;
+    }
+   
     document.querySelector(`#${juego}`).disabled = true;
-    document.querySelector(`#${juego}`).classList.remove('botonComprar');
     document.querySelector(`#${juego}`).classList.add('botonApagado');
 }
 
@@ -52,7 +54,7 @@ const mostrarBusqueda = (lista) => {
                                     <p class="text-left parrafoDescripcion"><span class="spanParrafo">Precio: </span>${item.precio} pesos</p>
                                     <p class="text-left parrafoDescripcion"><span class="spanParrafo">Genero: </span>${item.genero}</p>
                                 </div>
-                                <div class="modal-footer d-flex justify-content-between" id="contenedor${nombre}">
+                                <div class="modal-footer d-flex justify-content-between align-items-center" id="contenedor${nombre}">
                                     <button type="button" class="btn text-white botonComprar" id="${nombre}">Agregar al Carrito</button>
                                 </div>
                             </div>
@@ -94,11 +96,86 @@ const ordenarLista = (filtro) => {
     }
 };
 
-document.getElementById('itemLista').addEventListener('click', (event) => {
-    ordenarLista(event.target.id);
-});
+const realizarCompra = () => {
+    let carrito = document.getElementById('tablaCarrito');
+    let totalCompra = carritoJuegos.reduce((acum, item) => acum + item.precio, 0);
+    let carritoJson;
+
+    carrito.innerHTML = ``;
+    tablaCarrito = ``;
+
+    tablaCarrito = tablaCarrito + `
+        <table class="table table-striped table-dark">
+            <thead>
+            <tr>
+                <th scope="col"></th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Genero</th>
+                <th scope="col">Precio</th>
+            </tr>
+            </thead>
+            <tbody>`;
+    
+    carritoJuegos.forEach((e, index) => {
+        tablaCarrito = tablaCarrito +  `
+            <tr>
+                <th scope="row">${index + 1}</th>
+                <td>${e.nombre}</td>
+                <td>${e.genero}</td>
+                <td>${e.precio} pesos</td>
+            </tr>`;
+        });
+
+    tablaCarrito = tablaCarrito + `
+            <tr>
+                <th scope="row"></th>
+                <td></td>
+                <td></td>
+                <td>Total: ${totalCompra} pesos</td>
+            </tr>
+            </tbody>
+        </table>
+        <div class="modal-footer d-flex justify-content-start">
+            <button type="button" class="btn text-white botonCarrito" id="comprarJuegos">Comprar</button>
+            <button type="button" class="btn text-white botonCarrito" id="cancelarCompra">Cancelar</button>
+        </div>`;
+
+    carrito.innerHTML = tablaCarrito;
+    
+    if(carritoJuegos.length > 0){
+        document.getElementById('comprarJuegos').addEventListener('click', () => {
+            carritoJson = JSON.stringify(carritoJuegos);
+            localStorage.setItem('carritoJuegos', carritoJson);
+            alert('Se realizo la compra');
+            validarCarrito('comprarJuegos', '');
+            carrito.innerHTML = ``;
+            carritoJuegos = [];
+
+            mostrarBusqueda(listaJuegos);
+        });
+    }
+    else{
+        validarCarrito('comprarJuegos', '');
+    }
+
+    document.getElementById('cancelarCompra').addEventListener('click', () => {
+        carrito.innerHTML = ``;
+        carritoJuegos = [];
+        mostrarBusqueda(listaJuegos);
+    });
+}
 
 const inicioAPP = () => {
+    document.getElementById('tablaCarrito').innerHTML = ``;
+
+    document.getElementById('itemLista').addEventListener('click', (event) => {
+        ordenarLista(event.target.id);
+    });
+    
+    document.getElementById('verCarrito').addEventListener('click', (event) => {
+        realizarCompra();
+    });
+
     mostrarBusqueda(listaJuegos);
 };
 
