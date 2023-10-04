@@ -146,7 +146,12 @@ const realizarCompra = () => {
     
     if(carritoJuegos.length > 0){
         document.getElementById('comprarJuegos').addEventListener('click', () => {
-            carritoJson = JSON.stringify(carritoJuegos.concat(carritoStorage));
+            if (carritoStorage?.length > 0){
+                carritoJson = JSON.stringify(carritoJuegos.concat(carritoStorage));
+            }
+            else{
+                carritoJson = JSON.stringify(carritoJuegos);
+            }
             localStorage.setItem('carritoJuegos', carritoJson);
             alert('Se realizo la compra');
             validarCarrito('comprarJuegos', '');
@@ -169,6 +174,8 @@ const realizarCompra = () => {
 
 const inicioAPP = () => {
     carritoStorage = JSON.parse(localStorage.getItem('carritoJuegos'));
+
+    console.log(carritoStorage);
 
     document.getElementById('tablaCarrito').innerHTML = ``;
 
