@@ -13,6 +13,7 @@ const listaJuegos = [new Juego('Elden Ring', 430, 'Rockstar Games', 'Accion', '.
 
 let carritoJuegos = [];
 let tablaCarrito;
+let carritoStorage = [];
 
 const validarCarrito = (juego, mensaje) => {
     if(mensaje !== ""){
@@ -35,6 +36,7 @@ const mostrarBusqueda = (lista) => {
             <div class="card col-4 mt-2 pb-2 mb-3">
                 <div class="d-flex flex-column align-items-center justify-content-evenly p-2">
                     <img class="imgInicio" src="${item.imagen}">
+                    ${carritoStorage?.some((e) => e.nombre.replace(/\s+/g, '') === nombre) ? '<img class="enBiblioteca" src="./assets/img/en_biblioteca.png" alt="En la Biblioteca">' : ''}
                     <div class="modal fade" id="modal${nombre}" tabindex="-1" role="dialog"
                         aria-labelledby="modal${nombre}" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-scrollable d-flex justify-content-center align-items-center"
@@ -61,8 +63,8 @@ const mostrarBusqueda = (lista) => {
                         </div>
                     </div>
                 </div>
-                <button type="button" class="btn text-white botonModal" data-toggle="modal"
-                    data-target="#modal${nombre}">
+                <button type="button" class="btn text-white ${carritoStorage?.some((e) => e.nombre.replace(/\s+/g, '') === nombre) ? 'botonOscuro' : 'botonModal'}" data-toggle="modal"
+                    data-target="#modal${carritoStorage?.some((e) => e.nombre.replace(/\s+/g, '') === nombre) ? '' : nombre}">
                     Comprar ${item.nombre}
                 </button>
             </div>`;
@@ -144,14 +146,14 @@ const realizarCompra = () => {
     
     if(carritoJuegos.length > 0){
         document.getElementById('comprarJuegos').addEventListener('click', () => {
-            carritoJson = JSON.stringify(carritoJuegos);
+            carritoJson = JSON.stringify(carritoJuegos.concat(carritoStorage));
             localStorage.setItem('carritoJuegos', carritoJson);
             alert('Se realizo la compra');
             validarCarrito('comprarJuegos', '');
             carrito.innerHTML = ``;
             carritoJuegos = [];
 
-            mostrarBusqueda(listaJuegos);
+            inicioAPP();
         });
     }
     else{
@@ -166,6 +168,8 @@ const realizarCompra = () => {
 }
 
 const inicioAPP = () => {
+    carritoStorage = JSON.parse(localStorage.getItem('carritoJuegos'));
+
     document.getElementById('tablaCarrito').innerHTML = ``;
 
     document.getElementById('itemLista').addEventListener('click', (event) => {
