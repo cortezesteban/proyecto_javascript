@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="./css/estilos.css">
-    <title>Primera Preentrega</title>
+    <title>Tercera Preentrega</title>
 </head>
 
 <body>
@@ -45,8 +45,8 @@
             </div>
             <div class="col-12 navJuego mb-4">
                 <nav class="navbar navbar-light bg-light col-12 d-flex justify-content-start mb-3">
-                    <form class="form-inline">
-                        <input class="form-control mr-sm-2 buscarJuego" type="search" placeholder="Buscar por Nombre" aria-label="Search">
+                    <form class="form-inline" id="busquedaNombre">
+                        <input class="form-control mr-sm-2 buscarJuego" type="search" placeholder="Buscar por Nombre" aria-label="Search" id="nombreBusqueda">
                         <button class="btn my-2 my-sm-0 botonModal text-white" type="submit">Buscar</button>
                     </form>
                     <div class="dropdown ml-4">
@@ -68,42 +68,6 @@
             </div>
             <div class="col-12 listaJuego">
                 <div class="row" id="contenedorTarjetas">
-                    <!-- <div class="card col-4 mt-2 pb-2">
-                        <div class="d-flex flex-column align-items-center justify-content-evenly p-2">
-                            <img class="imgInicio" src="./assets/img/elden_ring_recomendado.jpg" alt="Juego Elden Ring">
-                            <img class="enBiblioteca" src="./assets/img/en_biblioteca.png" alt="En la Biblioteca">
-                            <div class="modal fade" id="modalEldenRing" tabindex="-1" role="dialog"
-                                aria-labelledby="modalEldenRing" aria-hidden="true">
-                                <div class="modal-dialog modal-dialog-scrollable d-flex justify-content-center align-items-center"
-                                    role="document">
-                                    <div class="modal-content w-75 modalColor text-white">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="modalEldenRingTitle">Elden Ring</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body d-flex flex-column justify-content-center align-items-center">
-                                            <img class="imgInicio " src="./assets/img/elden_ring_recomendado.jpg"
-                                                alt="Juego Elden Ring"
-                                                title="Juego de Rol y aventura en tercera persona">
-                                            <p class="text-justify">Elden Ring es un videojuego de rol de acción en tercera persona,
-                                                con una jugabilidad centrada en el combate y la exploración. Presenta características
-                                                similares de otros juegos desarrollados por FromSoftware, tales como la saga Dark Souls,
-                                                Bloodborne y Sekiro: Shadows Die Twice.</p>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-primary">Save changes</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <button type="button" class="btn text-white botonModal" data-toggle="modal"
-                            data-target="#modalEldenRing">
-                            Comprar Elden Ring
-                        </button>
-                    </div> -->
                 </div>
             </div>
             <div class="col-12 mt-5" id="tablaCarrito">

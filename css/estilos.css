@@ -179,12 +179,12 @@ header .navbar-dark .navbar-nav .nav-link:hover {
 }
 
 .tituloLista{
-  background: linear-gradient(to right, rgb(48, 51, 54), #6f8cb2); 
+  background: linear-gradient(to right, rgb(31, 33, 35), #32445c); 
   border-radius: 5px;
 }
 
 .listaJuego{
-  background: linear-gradient(to right, rgb(48, 51, 54), #6f8cb2); 
+  background: linear-gradient(to right, rgb(31, 33, 35), #32445c); 
   border-radius: 5px;
 }
 
