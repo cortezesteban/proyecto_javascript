@@ -1,8 +1,8 @@
 /* 
-    - La App simula una pagina para comprar Video Juegos, los juegos seleccionados se agregan a un array y al comprarlos se guardan 
-      en el Local Storage. 
-    - En este caso el Local Storage se usa para simular la persistencia de los juegos que se compran (biblioteca), los juegos comprados se 
-      marcan, para que al recargar la pagina no se puedan volver a comprar.
+    - La App simula una pagina para comprar Video Juegos
+    - Los juegos seleccionados se agregan al Local Storage 'carritoJuegos' que, se existe hasta que se compre el juego
+    - Los juegos comprados se agregan Local Storage 'juegosComprados' que, se usa para simular la persistencia de los juegos 
+      que se compran (biblioteca), los juegos comprados se marcan, para que al recargar la pagina no se puedan volver a comprar.
 */
 
 const listaJuegos = [new Juego('Elden Ring', 430, 'Rockstar Games', 'Accion', './assets/img/elden_ring_recomendado.jpg', 'Red Dead Redemption 2 es un juego de acción y aventuras de temática occidental . Jugado desde una perspectiva en primera o tercera persona, el juego está ambientado en un entorno de mundo abierto que presenta una versión ficticia de los Estados Unidos en 1899.'),
@@ -104,6 +104,8 @@ const mostrarBusqueda = (lista) => {
 
                 carritoJuegos.push(new Carrito(juego.nombre, juego.genero, juego.precio));
 
+                localStorage.setItem('carritoJuegos', JSON.stringify(carritoJuegos));
+
                 validarCarrito(nombreJuego, 'Se agrego al Carrito');
 
                 realizarCompra();
@@ -185,7 +187,8 @@ const realizarCompra = () => {
             else{
                 carritoJson = JSON.stringify(carritoJuegos);
             }
-            localStorage.setItem('carritoJuegos', carritoJson);
+            localStorage.setItem('juegosComprados', carritoJson);
+            localStorage.removeItem('carritoJuegos');
             alert('Se realizo la compra');
             validarCarrito('comprarJuegos', '');
             carrito.innerHTML = ``;
@@ -199,6 +202,7 @@ const realizarCompra = () => {
     }
 
     document.getElementById('cancelarCompra').addEventListener('click', () => {
+        localStorage.removeItem('carritoJuegos');
         carrito.innerHTML = ``;
         carritoJuegos = [];
         flagCompra = 0;
@@ -210,7 +214,8 @@ const realizarCompra = () => {
     Inicio de la App
 */
 const inicioAPP = () => {
-    carritoStorage = JSON.parse(localStorage.getItem('carritoJuegos'));
+    carritoStorage = JSON.parse(localStorage.getItem('juegosComprados'));
+    carritoJuegos = localStorage.getItem('carritoJuegos') != null ? JSON.parse(localStorage.getItem('carritoJuegos')) : [];
 
     document.getElementById('tablaCarrito').innerHTML = ``;
 
