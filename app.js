@@ -55,7 +55,7 @@ const mostrarBusqueda = (lista) => {
         let nombre = item.nombre.replace(/\s+/g, '');
 
         contenedor.innerHTML = contenedor.innerHTML + `
-            <div class="card col-3 mt-2 pb-2 mb-3">
+            <div class="card col-sm-12 col-md-6 col-lg-4 col-xl-3 mt-2 pb-2 mb-3">
                 <div class="d-flex flex-column align-items-center justify-content-evenly p-2">
                     <img class="imgInicio" src="${item.imagen}">
                     ${carritoStorage?.some((e) => e.nombre.replace(/\s+/g, '') === nombre) ? '<img class="enBiblioteca" src="./assets/img/en_biblioteca.png" alt="En la Biblioteca">' : ''}
@@ -142,37 +142,38 @@ const realizarCompra = () => {
     tablaCarrito = ``;
 
     tablaCarrito = tablaCarrito + `
-        <table class="table table-striped table-dark">
+        <h2 class="h2Tittle col-12 listaJuego text-center text-uppercase text-white mb-5 pt-4 pb-4 bg-danger">Juegos agregados al carrito</h2>
+        <table class="table table-striped table-dark col-sm-12">
             <thead>
-            <tr>
-                <th scope="col"></th>
-                <th scope="col">Nombre</th>
-                <th scope="col">Genero</th>
-                <th scope="col">Precio</th>
-            </tr>
+                <tr>
+                    <th scope="col"></th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Genero</th>
+                    <th scope="col">Precio</th>
+                </tr>
             </thead>
             <tbody>`;
     
     carritoJuegos.forEach((e, index) => {
         tablaCarrito = tablaCarrito +  `
-            <tr>
-                <th scope="row">${index + 1}</th>
-                <td>${e.nombre}</td>
-                <td>${e.genero}</td>
-                <td>${e.precio} pesos</td>
-            </tr>`;
+                <tr>
+                    <th scope="row">${index + 1}</th>
+                    <td>${e.nombre}</td>
+                    <td>${e.genero}</td>
+                    <td>${e.precio} pesos</td>
+                </tr>`;
         });
 
     tablaCarrito = tablaCarrito + `
-            <tr>
-                <th scope="row"></th>
-                <td></td>
-                <td></td>
-                <td>Total + Imp del 30%: ${(totalCompra * 0.30) + totalCompra} pesos</td>
-            </tr>
+                <tr>
+                    <th scope="row"></th>
+                    <td></td>
+                    <td></td>
+                    <td>Total + Imp del 30%: ${(totalCompra * 0.30) + totalCompra} pesos</td>
+                </tr>
             </tbody>
         </table>
-        <div class="modal-footer d-flex justify-content-start">
+        <div class="col-sm-12 modal-footer d-flex justify-content-start mb-5">
             <button type="button" class="btn text-white botonCarrito" id="comprarJuegos">Comprar</button>
             <button type="button" class="btn text-white botonCarrito" id="cancelarCompra">Cancelar</button>
         </div>`;

@@ -18,13 +18,11 @@
                 <a class="navbar-brand divImgNav" href="./index.html">
                     <img src="./assets/img/logo_juego.png" alt="" width="30" height="24" class="d-inline-block align-text-top">
                 </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
-                </button>
+                  </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 lista d-flex justify-content-end align-items-center">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 lista d-flex justify-content-end align-items-start">
                         <li class="nav-item">
                             <a class="nav-link active text-white" href="./index.html">Inicio</a>
                         </li>
@@ -43,14 +41,14 @@
             <div class="col-12 tituloLista mb-5">
                 <h2 class="h2Tittle text-center text-uppercase text-white mt-5 mb-5">Lista de video juegos</h2>
             </div>
-            <div class="col-12 navJuego mb-4">
+            <div class="col-sm-12 navJuego mb-4">
                 <nav class="navbar navbar-light bg-light col-12 d-flex justify-content-start mb-3">
                     <form class="form-inline" id="busquedaNombre">
-                        <input class="form-control mr-sm-2 buscarJuego" type="search" placeholder="Buscar por Nombre" aria-label="Search" id="nombreBusqueda">
+                        <input class="form-control mr-sm-2" type="search" placeholder="Buscar por Nombre" aria-label="Search" id="nombreBusqueda">
                         <button class="btn my-2 my-sm-0 botonModal text-white" type="submit">Buscar</button>
                     </form>
-                    <div class="dropdown ml-4">
-                        <button class="btn botonModal dropdown-toggle text-white" type="button" id="dropdownMenuButton"
+                    <div class="dropdown ml-2">
+                        <button class="btn botonModal dropdown-toggle text-white mt-md-0" type="button" id="dropdownMenuButton"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Genero
                         </button>
@@ -70,7 +68,9 @@
                 <div class="row" id="contenedorTarjetas">
                 </div>
             </div>
-            <div class="col-12 mt-5" id="tablaCarrito">
+            <div class="col-12 mt-5" >
+                <div class="row" id="tablaCarrito">
+                </div>
             </div>
         </section>
     </main>
