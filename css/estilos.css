@@ -84,7 +84,7 @@ body{
 }
 
 .h4Tittle {
-  font-size: 1.3rem;
+  font-size: 1.1rem;
   font-family: Poppins, sans-serif;
 }
 
@@ -99,23 +99,6 @@ body{
     background-color: rgb(64, 121, 206);
 }
 
-@media screen and (min-width: 0px) and (max-width: 768px) {
-  /************************************************
-               MEDIA QUERIES MAIN
-  ************************************************/
-  .h1Tittle {
-    font-size: 1.2rem;
-  }
-  .h2Tittle {
-    font-size: 1.2rem;
-  }
-  .h4Tittle {
-    font-size: 1rem;
-  }
-  .parrafo {
-    font-size: 1rem;
-  }
-}
 header {
   background: linear-gradient(to right, black, #212226);
   position: fixed;
@@ -238,3 +221,31 @@ header .nav .imagenCarrito{
   color: white;
   font-size: 30px;
 }
+
+.tarjeta{
+  background: #536179;
+}
+
+.contenedorTarjeta{
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+@media screen and (min-width: 0px) and (max-width: 768px) {
+  /************************************************
+               MEDIA QUERIES MAIN
+  ************************************************/
+  .h1Tittle {
+    font-size: 1.2rem;
+  }
+  .h2Tittle {
+    font-size: 1.2rem;
+  }
+  .h4Tittle {
+    font-size: 1rem;
+  }
+  .parrafo {
+    font-size: 1rem;
+  }
+}
+

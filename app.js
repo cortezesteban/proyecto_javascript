@@ -5,6 +5,8 @@
       que se compran (biblioteca), los juegos comprados se marcan, para que al recargar la pagina no se puedan volver a comprar.
 */
 
+let listaUsuarios = [];
+let listaJuegos = [];
 let carritoJuegos = [];
 let tablaCarrito;
 let carritoStorage = [];
@@ -226,13 +228,76 @@ const inicioAPP = () => {
 };
 
 /* 
-    Carga datos del archivo json y llama a la funcion principal
+    Arma carrusel de tarjetas
+*/
+const listarUsuario = () => {
+    let carruselUsuario = ``;
+    let ini = 0;
+    let fin = 4;
+
+    for (let i = 0; i < 4; i++){
+        if (i == 0){
+            carruselUsuario = carruselUsuario + `
+            <div class="carousel-item active">
+                <div class="row" id="contenedorUsuarios">`;
+        }
+        else{
+            carruselUsuario = carruselUsuario + `
+            <div class="carousel-item">
+                <div class="row" id="contenedorUsuarios">`;
+        };
+        
+        for(let y = ini; y < fin; y++){
+            carruselUsuario = carruselUsuario + `
+                    <div class="col-md-3 contenedorTarjeta">
+                        <div class="card d-flex flex-column align-items-center justify-content-evenly tarjeta w-100 pt-4 mb-4">
+                            <img class="img-fluid w-50 h-50" alt="100%x280" src="${listaUsuarios.results[y].picture.large}">
+                            <div class="card-body">
+                                <h4 class="card-title h4Tittle text-white">${listaUsuarios.results[y].name.first} ${listaUsuarios.results[y].name.last}</h4>
+                                <p class="card-text mb-0 text-white"><span class="font-weight-bold">Edad: </span>${listaUsuarios.results[y].dob.age}</p>
+                                <p class="card-text text-white"><span class="font-weight-bold">Ciudad: </span> ${listaUsuarios.results[y].location.city}</p>
+                            </div>
+                        </div>
+                    </div>`;
+            ini++;
+        };
+        fin = fin + 4;
+        carruselUsuario = carruselUsuario + `
+                </div>
+            </div>`;
+    };
+    return carruselUsuario;
+};
+
+/* 
+    Consulta usuario para armar el carrusel de tarjetas
+*/
+const cargarListaUsuario = async () => {
+    const respuesta = await fetch('https://randomuser.me/api/?results=16');
+    
+    if (respuesta.ok){
+        listaUsuarios = await respuesta.json();
+        let contenedor = document.getElementById('contenedorUsuarios');
+        contenedor.innerHTML = ``;
+        contenedor.innerHTML = listarUsuario();
+    }
+    else{
+        const contenedor = document.getElementById('contenedorTarjetas');
+        contenedor.innerHTML = ``;
+        contenedor.innerHTML = `<p class="text-center dflex justify-content-center w-100 errorMensaje">
+                                    <span class="errorMensaje">Se produjo el siguiente error </span>Status: ${respuesta.status} - ${respuesta.statusText}</p>`;
+    }
+}
+
+/* 
+    Carga datos del archivo json, lista usuario y llama a la funcion principal
 */
 const cargarLista = async () => {
     const respuesta = await fetch('./juegos.json');
     
     if (respuesta.ok){
         listaJuegos = await respuesta.json();
+        cargarListaUsuario();
         inicioAPP();
     }
     else{
