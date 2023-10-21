@@ -1,7 +1,7 @@
 /* 
-    - La App simula una pagina para comprar Video Juegos
-    - Los juegos seleccionados se agregan al Local Storage 'carritoJuegos' que, se existe hasta que se compre el juego
-    - Los juegos comprados se agregan Local Storage 'juegosComprados' que, se usa para simular la persistencia de los juegos 
+    - La App simula una pagina para comprar Video Juegos.
+    - Los juegos seleccionados se agregan al Local Storage 'carritoJuegos', existe hasta hasta que se realiza la compra.
+    - Los juegos comprados se agregan al Local Storage 'juegosComprados', que se usa para simular la persistencia de los juegos 
       que se compran (biblioteca), los juegos comprados se marcan, para que al recargar la pagina no se puedan volver a comprar.
 */
 
@@ -28,7 +28,7 @@ const validarCarrito = (juego, mensaje) => {
 
 /* 
     Muestra la lista que recibe como parametro
-    Marca los juegos comprados que estan en el Storage
+    Marca los juegos comprados que estan en el Local Storage
 */
 const mostrarBusqueda = (lista) => {
     const contenedor = document.getElementById('contenedorTarjetas');
@@ -100,7 +100,7 @@ const mostrarBusqueda = (lista) => {
 };
 
 /* 
-    Recibe como paremetro la lista que se quiere mostrar
+    Recibe como paremetro el id de lista desplegable
 */
 const ordenarLista = (filtro) => {
     if (filtro === 'Todo') {
@@ -124,7 +124,7 @@ const realizarCompra = () => {
     tablaCarrito = ``;
 
     tablaCarrito = tablaCarrito + `
-        <h2 class="h2Tittle col-12 listaJuego text-center text-uppercase text-white mb-3 pt-4 pb-4">Juegos agregados al carrito</h2>
+        <h2 class="h2Tittle col-12 tituloSeparador text-center text-uppercase text-white mb-3 pt-3 pb-3">Juegos agregados al carrito</h2>
         <table class="table table-striped table-dark col-sm-12 listaJuego">
             <thead>
                 <tr>
@@ -202,7 +202,7 @@ const realizarCompra = () => {
 };
 
 /* 
-    Inicio de la App
+    Funcion Principal
 */
 const inicioAPP = () => {
     carritoStorage = JSON.parse(localStorage.getItem('juegosComprados'));
@@ -249,10 +249,10 @@ const listarUsuario = () => {
         
         for(let y = ini; y < fin; y++){
             carruselUsuario = carruselUsuario + `
-                    <div class="col-md-3 contenedorTarjeta">
-                        <div class="card d-flex flex-column align-items-center justify-content-evenly tarjeta w-100 pt-4 mb-4">
+                    <div class="col-md-6 col-sm-6 col-lg-6 col-xl-3 contenedorTarjeta">
+                        <div class="card d-flex flex-column align-items-center justify-content-evenly tarjeta pt-4 mb-4">
                             <img class="img-fluid w-50 h-50" alt="100%x280" src="${listaUsuarios.results[y].picture.large}">
-                            <div class="card-body">
+                            <div class="card-body w-100 h-100 text-center">
                                 <h4 class="card-title h4Tittle text-white">${listaUsuarios.results[y].name.first} ${listaUsuarios.results[y].name.last}</h4>
                                 <p class="card-text mb-0 text-white"><span class="font-weight-bold">Edad: </span>${listaUsuarios.results[y].dob.age}</p>
                                 <p class="card-text text-white"><span class="font-weight-bold">Ciudad: </span> ${listaUsuarios.results[y].location.city}</p>
@@ -273,7 +273,7 @@ const listarUsuario = () => {
     Consulta usuario para armar el carrusel de tarjetas
 */
 const cargarListaUsuario = async () => {
-    const respuesta = await fetch('https://randomuser.me/api/?results=16');
+    const respuesta = await fetch('https://randomuser.me/api/?results=16&gender=male');
     
     if (respuesta.ok){
         listaUsuarios = await respuesta.json();
@@ -290,7 +290,7 @@ const cargarListaUsuario = async () => {
 }
 
 /* 
-    Carga datos del archivo json, lista usuario y llama a la funcion principal
+    Carga datos del archivo json, carga el carrusel de usuario y llama a la funcion principal
 */
 const cargarLista = async () => {
     const respuesta = await fetch('./juegos.json');

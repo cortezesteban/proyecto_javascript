@@ -142,5 +142,13 @@
       "genero": "Estrategia",
       "imagen": "./assets/img/Age2.webp",
       "descripcion": "Age of Empires II: Definitive Edition celebra el vigésimo aniversario de una de las sagas de estrategia más populares y queridas del ocio digital, presentando ahora sus gráficos en 4K, remasterizando su audio y los efectos sonoros y estrenando una campaña nueva llamada The Last Khans."
+    },
+    {
+      "nombre": "Seven Days to Die",
+      "precio": 390,
+      "empresa": "The Fun Pimps",
+      "genero": "Supervivencia",
+      "imagen": "./assets/img/7_days_to_day.webp",
+      "descripcion": "7 Days to Die es un juego de supervivencia en mundo abierto, que combina dinámicas de defensa con torres, terror y juego de rol, permitiéndonos recolectar elementos, fabricar, minar y pelear. El título nos cuenta la historia de una Tierra en ruinas que tendrá que sobrevivir a la radiación."
     }
   ]
